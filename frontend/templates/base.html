@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>STSARC - Smart Chatbot Builder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #f5faff;
+            color: #111827;
+        }
+        nav {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .container a {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.25rem;
+            color: #1d4ed8;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-links a,
+        .nav-links span {
+            font-weight: 500;
+            color: #1f2937;
+            text-decoration: none;
+        }
+        .content {
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="{{ url_for('index') }}">STSARC</a>
+            <div class="nav-links">
+                {% if 'username' in session %}
+                    <span>Welcome, {{ session['username'] }}</span>
+                    <a href="{{ url_for('auth.logout') }}">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('auth.login') }}">Login</a>
+                    <a href="{{ url_for('auth.signup') }}">Sign Up</a>
+                    <a href="{{ url_for('demo') }}">Try Demo</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

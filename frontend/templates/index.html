@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h1>Welcome to Gemini Chat</h1>
+    <p>Experience the power of AI with Google's Gemini model</p>
+    <div class="cta">
+        {% if 'username' in session %}
+            <a href="{{ url_for('chat') }}" class="btn">Go to Chat</a>
+        {% else %}
+            <a href="{{ url_for('auth.signup') }}" class="btn">Sign Up</a>
+            <a href="{{ url_for('auth.login') }}" class="btn">Login</a>
+            <a href="{{ url_for('demo') }}" class="btn demo-btn">Try Demo</a>
+        {% endif %}
+    </div>
+</div>
+<div class="features">
+    <div class="feature">
+        <h3>Smart Responses</h3>
+        <p>Get intelligent answers to your questions</p>
+    </div>
+    <div class="feature">
+        <h3>24/7 Availability</h3>
+        <p>Chat anytime, anywhere</p>
+    </div>
+    <div class="feature">
+        <h3>User Friendly</h3>
+        <p>Simple and intuitive interface</p>
+    </div>
+</div>
+{% endblock %}
